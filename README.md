@@ -1,50 +1,54 @@
 # FastCMD
 Fast command finding in a text flow for an STM32 microcontroller.
 
-Includes
-```
-#include "stm32l1xx.h": Includes the specific header file for the STM32L1 series microcontrollers. You can change it.
-```
-Definitions
-```
-__ptr uint8_t: Defines a pointer type and the maximum data size.
-STATIC_BUFFER_SIZE 256: Defines the static buffer size to 256 bytes for uint8_t pointer type.
-```
-Callback Type
-```
-CommandProcessorCallback: Defines a callback function type that takes a char* argument string and an int argument number.
-```
+## Includes
 
-Function Declarations
+`#include "stm32l1xx.h"`: Includes the specific header file for the STM32L1 series microcontrollers. You can change it.
 
-CharProcess
-```
-CommandProcessorCallback CharProcess(__ptr pcmdnode, char ch);
+## Definitions
+
+`__ptr uint8_t`: Defines a pointer type and the maximum data size.
+
+`STATIC_BUFFER_SIZE 256`: Defines the static buffer size to 256 bytes for uint8_t pointer type.
+
+## Callback Type
+
+`typedef void(*CommandProcessorCallback)(char*,int)`: Defines a callback function type CommandProcessorCallback that takes a char* argument string and an int argument number.
+
+## Function Declarations
+
+### CharProcess
+
+`CommandProcessorCallback CharProcess(__ptr pcmdnode, char ch)`
+
 Finds commands in the text flow.
-Parameters:
-  pcmdnode: Pointer to the command node.
-  ch: Character to find.
-Returns: 0 if the command can't be found or the address of the callback function.
-```
 
-InitCmdEngine
-```
-void InitCmdEngine(void);
+**Parameters:**
+  
+* pcmdnode: Pointer to the command node.
+* ch: Character to find.
+
+**Returns:** 0 if the command can't be found or the address of the callback function.
+
+### InitCmdEngine
+
+`void InitCmdEngine(void)`
+
 Clears all commands.
-```
 
-AddCmd
-```
-char AddCmd(__ptr pcmdset, const char * cmd, CommandProcessorCallback callback);
+### AddCmd
+
+`char AddCmd(__ptr pcmdset, const char * cmd, CommandProcessorCallback callback)`
+
 Adds a command.
-Parameters:
-  pcmdset: Pointer to the main command object. If *pcmdset == 0, returns the set of commands place.
-  cmd: Command string.
-  callback: Callback function when the command is found by CharProcess().
-Returns: 1 if the command is added, 0 if there's not enough memory.
-```
 
-Example Usage
+**Parameters:**
+* pcmdset: Pointer to the main command object. If *pcmdset == 0, returns the set of commands place.
+* cmd: Command string.
+* callback: Callback function when the command is found by CharProcess().
+**Returns**: 1 if the command is added, 0 if there's not enough memory.
+
+## Example Usage
 
 The provided example demonstrates how to use the command processing functions to find and execute commands from a text flow.
 
