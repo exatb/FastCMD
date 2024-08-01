@@ -43,9 +43,11 @@ Clears all commands.
 Adds a command.
 
 **Parameters:**
+
 * pcmdset: Pointer to the main command object. If *pcmdset == 0, returns the set of commands place.
 * cmd: Command string.
 * callback: Callback function when the command is found by CharProcess().
+
 **Returns**: 1 if the command is added, 0 if there's not enough memory.
 
 ## Example Usage
